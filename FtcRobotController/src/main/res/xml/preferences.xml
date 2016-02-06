@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright (c) 2014, 2015 Qualcomm Technologies Inc
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted (subject to the limitations in the disclaimer below) provided that
+the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this
+list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+Neither the name of Qualcomm Technologies Inc nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS
+LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+          android:title="@string/pref_change_wifi_channel">
+
+    <PreferenceScreen
+            android:title="@string/pref_change_wifi_channel"
+            android:key="@string/pref_launch_settings">
+      <intent
+              android:action="com.qualcomm.ftccommon.FtcWifiChannelSelectorActivity.intent.action.Launch"
+              android:targetPackage="com.qualcomm.ftccommon"
+              android:targetClass="com.qualcomm.ftccommon.FtcWifiChannelSelectorActivity" />
+    </PreferenceScreen>
+  </PreferenceCategory>
+
+  <PreferenceCategory
+          android:title="@string/pref_configure_robot_title">
+
+    <PreferenceScreen
+            android:title="@string/configure_activity"
+            android:key="@string/pref_launch_configure">
+      <intent
+              android:action="com.qualcomm.ftccommon.configuration.FtcLoadFileActivity.intent.action.Launch"
+              android:targetPackage="com.qualcomm.ftccommon"
+              android:targetClass="com.qualcomm.ftccommon.configuration.FtcLoadFileActivity" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+            android:title="@string/title_activity_autoconfigure"
+            android:key="@string/pref_launch_autoconfigure">
+      <intent
+              android:action="com.qualcomm.ftccommon.configuration.FtcAutoconfigureActivity.intent.action.Launch"
+              android:targetPackage="com.qualcomm.ftccommon"
+              android:targetClass="com.qualcomm.ftccommon.configuration.AutoConfigureActivity" />
+    </PreferenceScreen>
+  </PreferenceCategory>
+  <PreferenceCategory
+          android:title="FTC6460 specific">
+
+
+    <PreferenceScreen
+            android:title="FTC6460 Driver Preferences"
+            android:key="ftc6460_driverprefs">
+      <PreferenceCategory
+              android:title="Drivetrain"
+              android:key="drv">
+
+        <EditTextPreference
+                android:defaultValue="0.50"
+                android:dialogTitle="Low-speed mode ratio"
+                android:inputType="numberDecimal"
+                android:key="lowspeed_power_scale"
+                android:summary="Power ratio for low-speed mode."
+                android:title="Low-speed mode ratio"/>
+      </PreferenceCategory>
+
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+            android:title="FTC6460 Tuning"
+            android:key="ftc6460_tuning">
+      <PreferenceCategory
+
+              android:title="Traction control"
+
+              android:key="trac">
+        <CheckBoxPreference
+                android:key="pref_trac_enable"
+                android:summary="Enable per-wheel traction control by dropping power in response to detected wheelslip"
+                android:title="Enable traction control"
+                android:defaultValue="true"
+                />
+        <EditTextPreference
+                android:defaultValue="1.33"
+                android:dialogTitle="Wheelslip detection threshold factor"
+                android:inputType="numberDecimal"
+                android:key="pref_trac_overspeed_factor"
+                android:summary="Define the factor by which velocity needs to increase to trigger traction control. Should be more than 1"
+                android:title="Wheelslip detection threshold factor"/>
+        <EditTextPreference
+                android:defaultValue="0.66"
+                android:dialogTitle="Wheelslip mitigation power factor"
+                android:inputType="numberDecimal"
+                android:key="pref_trac_powerdrop_factor"
+                android:summary="Define the factor by which velocity needs to increase to trigger traction control. Should be less than 1"
+                android:title="Wheelslip mitigation power factor"/>
+        <EditTextPreference
+                android:defaultValue="5"
+                android:dialogTitle="Autonomous ramp climb time"
+                android:inputType="numberDecimal"
+                android:key="auton_ramp_climb_time"
+                android:summary="Time from entering ramp to drive motor cut-off."
+                android:title="Autonomous ramp climb time"/>
+        <EditTextPreference
+                android:defaultValue="1.00"
+                android:dialogTitle="Autonomous ramp climb power"
+                android:inputType="numberDecimal"
+                android:key="auton_ramp_climb_power"
+                android:summary="Drive motor commanded power for ramp during autonomous."
+                android:title="Autonomous ramp climb power"/>
+      </PreferenceCategory>
+
+
+    </PreferenceScreen>
+    <PreferenceScreen
+            android:title="FTC6460 Auton"
+            android:key="ftc6460_tuning">
+      <PreferenceCategory
+
+              android:title="Autonomous overall strategy"
+
+              android:key="trac">
+        <ListPreference
+                android:key="auton_team_color"
+                android:title="Team alliance color"
+                android:entries="@array/color"
+                android:entryValues="@array/colorAlias"/>
+        <CheckBoxPreference
+                android:key="auton_do_beacon"
+                android:summary="Target pressing the beacon light"
+                android:title="Press beacon light"
+                android:defaultValue="true"
+                />
+        <CheckBoxPreference
+                android:key="auton_park_on_ramp"
+                android:summary="Target parking on ramp"
+                android:title="Park on ramp"
+                android:defaultValue="true"
+                />
+        <ListPreference
+                android:key="auton_ramp_selection"
+                android:title="Autonomous ramp selection"
+                android:entries="@array/ramp"
+                android:entryValues="@array/rampAlias"/>
+        <ListPreference
+                android:key="auton_start_position"
+                android:title="Start position"
+                android:entries="@array/startPos"
+                android:entryValues="@array/startPosAlias"/>
+          <ListPreference
+                  android:key="auton_goal_position"
+                  android:title="Goal position"
+                  android:entries="@array/goalPos"
+                  android:entryValues="@array/goalPosAlias"/>
+        <EditTextPreference
+                android:defaultValue="5"
+                android:dialogTitle="Time to beacon area clear"
+                android:inputType="number"
+                android:key="auton_beacon_area_clear_time"
+                android:summary="How long to wait for other robot to clear beacon area, IN SECONDS."
+                android:title="Time to beacon area clear"/>
+          <EditTextPreference
+                  android:defaultValue="0"
+                  android:dialogTitle="Time to dead-reckon after lock to press"
+                  android:inputType="number"
+                  android:key="camera_to_btn_offset"
+                  android:summary="How long to drive for to move the button pusher in alignment to the button. Negative to reverse movement."
+                  android:title="Time to align button pusher"/>
+        <EditTextPreference
+                android:defaultValue="0"
+                android:dialogTitle="Time to drive for camera undershoot correction"
+                android:inputType="number"
+                android:key="camera_undershoot_correction"
+                android:summary="How long to drive in the same direction after camera lock."
+                android:title="Time to drive past camera successful target detection"/>
+        <EditTextPreference
+                android:dialogTitle="Gyro tuning"
+                android:key="gyrocalib"
+                android:summary="The gyro calibration data, for manual input."
+                android:title="Gyro calibration"/>
+        <CheckBoxPreference
+                android:key="doVoltageAdj"
+                android:summary="Adjust for voltage variations in recorded-movement auton"
+                android:title="Adjust for voltage variations in recorded-movement auton"
+                android:defaultValue="false"
+        />
+      </PreferenceCategory>
+    </PreferenceScreen>
+
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,39 @@
+uicapply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion = '22.0.1'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 19
+    }
+    buildTypes {
+        release {
+            debuggable true
+        }
+        debug {
+            debuggable true
+        }
+    }
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile files('libs/android-support-v4.jar')
+    compile (name:'RobotCore-release', ext:'aar')
+    compile (name:'Hardware-release', ext:'aar')
+    compile (name:'FtcCommon-release', ext:'aar')
+    compile (name:'ModernRobotics-release', ext:'aar')
+    compile (name:'Analytics-release', ext:'aar')
+    compile (name:'WirelessP2p-release', ext:'aar')
+    compile project(':SwerveRoboticsLibrary')
+
+    compile 'org.bytedeco:javacpp-presets:0.11'
+    compile 'org.bytedeco:javacpp:0.11'
+    compile group: 'org.bytedeco', name: 'javacv', version: '0.11'
+}
